@@ -73,14 +73,38 @@ def retirar_livro():
 
         else:
             print("Usuário não cadastrado!")
-            retorna_menu()
+    retorna_menu()
+
+def ver_empretados():
+    print("Essa é a lista de livros que estão emprestados:\n")
+    print(emprestados)
 
     retorna_menu()
 
+def devolucao():
+    livro = str(input("Digite o nome do livro que deseja devolver:\n"))
+
+    for livro in emprestados:
+        if livro in emprestados:
+            emprestados.remove(livro)
+            lista_livros.append(livro)
+        else:
+            print("Livro não encontrado na lista de empréstimos!")
+    
+    nome = str(input("Digite o seu nome:\n"))
+    for nome in emprestados:
+        if nome in emprestados:
+            emprestados.remove(nome)
+            print(f"Feito, {nome}. O livro {livro} foi devolvido á nossa biblioteca!\n")
+            print("Muito obrigado por utilizar nossa biblioteca!\n")
+            
+        else:
+            print("Usuário não encontrado!")
+    retorna_menu()
 
 def main():
     print("Olá, seja muito bem-vindo ao sistema da Biblioteca do Bairro")
-    opcao = int(input("Digite o número da opção que deseja escolher: \n 1.Cadastrar novo usuário.\n 2.Ver usuários cadastrados 3.Cadastrar ou devolver livro.\n 4.Verificar disponibilidade\n 5.Ver lista de livros\n 6.Retirada de livros.\n 7.Sair\n"))
+    opcao = int(input("Digite o número da opção que deseja escolher: \n 1.Cadastrar novo usuário.\n 2.Ver usuários cadastrados 3.Cadastrar livro.\n 4.Verificar disponibilidade\n 5.Ver lista de livros\n 6.Retirada de livros.\n 7.Sair\n"))
     if opcao == 1:
         cadastrar_usuario()
     elif opcao == 2:
@@ -93,7 +117,11 @@ def main():
         ver_lista()
     elif opcao == 6:
         retirar_livro()
+    elif opcao == 7:
+        ver_empretados()
     elif opcao == 8:
+        devolucao()
+    elif opcao == 9:
         print("Obrigado por usar nosso sistema, volte sempre!")
     else:
         print("Opção inválida")
