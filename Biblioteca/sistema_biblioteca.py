@@ -7,9 +7,8 @@ def retorna_menu():
     else:
         print("Opção inválida!")
 
+lista_usuarios = []
 def cadastrar_usuario():
-    lista_usuarios = []
-
     id_usuario = int(input("Digite o ID do usuário:\n"))
     nome = str(input("Digite o nome do usuário:\n"))
     idade = int(input("Digite a idade do usuário:\n"))
@@ -18,7 +17,11 @@ def cadastrar_usuario():
     usuarios = {"ID": id_usuario, "Nome": nome, "Idade": idade, "Endereço": endereco}
     lista_usuarios.append(usuarios)    
 
-    print("Lista de pessoas cadastradas:\n")
+    print("Usuário cadastrado com sucesso!\n")
+    retorna_menu()
+
+def ver_usuarios_cadastrados():
+    print("Lista de usuários cadastrados:\n")
     print(lista_usuarios)
     retorna_menu()
 
@@ -37,10 +40,11 @@ def cadastrar_livro():
 def verificar_disponibilidade():
     livro = str(input("Digite o nome do livro que deseja verificar:\n"))
 
-    if livro in lista_livros:
-        print("Livro disponível")
-    else:
-        print("Livro indisponível")
+    for livro in lista_livros:
+        if livro in lista_livros:
+            print("Livro disponível")
+        else:
+            print("Livro indisponível")
     retorna_menu()
 
 def ver_lista():
@@ -48,33 +52,49 @@ def ver_lista():
     print(lista_livros)
     retorna_menu()
 
+emprestados = []
 def retirar_livro():
     livro = str(input("Digite o nome do livro que deseja retirar:\n"))
 
-    if livro in lista_livros:
-        lista_livros.remove(livro)
-        print("Livro retirado!\n Devolva em 7 dias!\n")
-    else:
-        print("Livro indisponível")
+    for livro in lista_livros:
+        if livro in lista_livros:
+            lista_livros.remove(livro)
+        else:
+            print("Livro indisponível")
+    
+    nome = str(input("Digite o seu nome:\n"))
+    for nome in lista_usuarios:
+        if nome in lista_usuarios:
+            print(f"Feito, {nome}. Você pegou o livro {livro} emprestado!")
+            print("Livro retirado!\n Devolva em 7 dias!\n")
+
+            registro = {"Nome": nome, "Livro": livro}
+            emprestados.append(registro)
+
+        else:
+            print("Usuário não cadastrado!")
+            retorna_menu()
 
     retorna_menu()
 
 
 def main():
     print("Olá, seja muito bem-vindo ao sistema da Biblioteca do Bairro")
-    opcao = int(input("Digite o número da opção que deseja escolher: \n 1.Cadastrar novo usuário.\n 2.Cadastrar novo livro.\n 3.Verificar disponibilidade\n 4.Retirada de livros.\n 5.Devolução de livros\n 6.Sair\n"))
+    opcao = int(input("Digite o número da opção que deseja escolher: \n 1.Cadastrar novo usuário.\n 2.Ver usuários cadastrados 3.Cadastrar ou devolver livro.\n 4.Verificar disponibilidade\n 5.Ver lista de livros\n 6.Retirada de livros.\n 7.Sair\n"))
     if opcao == 1:
         cadastrar_usuario()
     elif opcao == 2:
-        print("Cadastrar livro")
+        ver_usuarios_cadastrados()    
     elif opcao == 3:
-        print("Verificar disponibilidade")
+        cadastrar_livro()
     elif opcao == 4:
-        print("Retirar livros")
+        verificar_disponibilidade()
     elif opcao == 5:
-        print("Devolução")
+        ver_lista()
     elif opcao == 6:
-        print("Sair")
+        retirar_livro()
+    elif opcao == 8:
+        print("Obrigado por usar nosso sistema, volte sempre!")
     else:
         print("Opção inválida")
 
