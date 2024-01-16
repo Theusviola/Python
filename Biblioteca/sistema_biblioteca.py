@@ -32,9 +32,7 @@ def cadastrar_livro():
 
     livro = {"Nome": nome_livro, "Gênero":genero_livro}
     lista_livros.append(livro)
-
-    print("Lista de livros atualizada:\n")
-    print(lista_livros)
+    print("Livro adicionado!")
     retorna_menu()
 
 def verificar_disponibilidade():
@@ -55,7 +53,6 @@ def ver_lista():
 emprestados = []
 def retirar_livro():
     livro = str(input("Digite o nome do livro que deseja retirar:\n"))
-
     for livro in lista_livros:
         if livro in lista_livros:
             lista_livros.remove(livro)
@@ -63,6 +60,7 @@ def retirar_livro():
             print("Livro indisponível")
     
     nome = str(input("Digite o seu nome:\n"))
+    
     for nome in lista_usuarios:
         if nome in lista_usuarios:
             print(f"Feito, {nome}. Você pegou o livro {livro} emprestado!")
@@ -87,24 +85,28 @@ def devolucao():
     for livro in emprestados:
         if livro in emprestados:
             emprestados.remove(livro)
-            lista_livros.append(livro)
         else:
             print("Livro não encontrado na lista de empréstimos!")
+
+    genero = str(input("Digite o gênero do livro:\n"))
     
     nome = str(input("Digite o seu nome:\n"))
     for nome in emprestados:
         if nome in emprestados:
             emprestados.remove(nome)
-            print(f"Feito, {nome}. O livro {livro} foi devolvido á nossa biblioteca!\n")
+            print(f"Feito {nome}. O livro {livro} foi devolvido á nossa biblioteca!\n")
             print("Muito obrigado por utilizar nossa biblioteca!\n")
             
         else:
             print("Usuário não encontrado!")
+
+    livro = {"Nome": livro, "Gênero":genero}
+    lista_livros.append(livro)
     retorna_menu()
 
 def main():
     print("Olá, seja muito bem-vindo ao sistema da Biblioteca do Bairro")
-    opcao = int(input("Digite o número da opção que deseja escolher: \n 1.Cadastrar novo usuário.\n 2.Ver usuários cadastrados 3.Cadastrar livro.\n 4.Verificar disponibilidade\n 5.Ver lista de livros\n 6.Retirada de livros.\n 7.Sair\n"))
+    opcao = int(input("Digite o número da opção que deseja escolher: \n 1.Cadastrar novo usuário.\n 2.Ver usuários cadastrados\n 3.Cadastrar livro.\n 4.Verificar disponibilidade\n 5.Ver lista de livros\n 6.Retirada de livros.\n 7.Ver livros emprestados\n 8.Devolução\n 9.Sair\n"))
     if opcao == 1:
         cadastrar_usuario()
     elif opcao == 2:
